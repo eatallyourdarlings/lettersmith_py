@@ -92,7 +92,7 @@ def should_template(doc):
     return get(Doc.template, doc) is not ""
 
 
-def jinja(templates_path, base_url, context={}, filters={}):
+def jinja(templates_path, context={}, filters={}):
     """
     Wraps up the gory details of creating a Jinja renderer.
     Returns a render function that takes a doc and returns a rendered doc.
@@ -102,7 +102,7 @@ def jinja(templates_path, base_url, context={}, filters={}):
     now = datetime.now()
     env = LettersmithEnvironment(
         templates_path,
-        filters={"permalink": _permalink(base_url), **filters},
+        # filters={"permalink": _permalink(base_url), **filters},
         context={"now": now, **context}
     )
 
